@@ -22,6 +22,8 @@ pygame.display.set_caption('C.D.S - Calculadora de Serviços')
 
 # Fontes utilizadas no programa (Courier)
 button_font = pygame.font.SysFont('Courier', 18)
+button_fontav = pygame.font.SysFont('Courier', 15)
+button_fontent = pygame.font.SysFont('Courier', 29)
 welcome_font = pygame.font.SysFont('Courier', 32)
 
 # Formatação para o dinheiro ser printado como real e só ter duas casas decimais
@@ -54,21 +56,17 @@ def main():
             elif event.type == pygame.MOUSEBUTTONDOWN:
 
                 if service_buttons_active and service_button.collidepoint(event.pos):
-                    print("Botão de serviço apertado")
+                    ##print("Botão de serviço apertado")
                     current_screen = "servicos"  # Altera para a tela de serviços
                     service_buttons_active = False
                     result_button_active = True
 
                 elif current_screen == "servicos":
+
                     if back_button.collidepoint(event.pos):
-                        print("Botão de voltar apertado")
-                        current_screen = "main"  # Volta para a tela principal
-                        service_buttons_active = True
-                        num1 = ''
-                        result_l = None
-                        result_iss = None
-                        result_inss = None
-                        result_irpf = None
+                        pygame.quit()
+                        sys.exit()
+
                     elif num1_box.collidepoint(event.pos):
                         active_num1 = True
 
@@ -91,7 +89,7 @@ def main():
 
                             result_l = num1 - (result_iss + result_inss + result_irpf)
                             num1 = str(num1)  # Convertendo de volta para string
-                            print(result_l, result_iss, result_inss, result_irpf)
+                            ##print(result_l, result_iss, result_inss, result_irpf)
                             
                         except ValueError:
                             result_l = "Erro: Entrada inválida"
@@ -137,13 +135,23 @@ def draw_main_screen():
 
 def draw_servicos_screen(num1, result_l, result_inss, result_iss, result_irpf, active_num1):
     # Desenha a tela de serviços
-    screen.fill(YELLOW)  # Preenche a tela com branco
+    screen.fill(YELLOW)  # Preenche a tela com Amarelo
     text = "Operação de Serviço"
     text_surface = button_font.render(text, True, BLACK)
     text_rect = text_surface.get_rect(center=(WINDOW_SIZE[0] // 2, 100))
     screen.blit(text_surface, text_rect)
 
-    draw_button(back_button, GRAY, "Voltar")
+    texta = "R$:"
+    text_surface = button_fontent.render(texta, True, BLACK)
+    text_rect = text_surface.get_rect(left=40, top=207)
+    screen.blit(text_surface, text_rect)
+
+    textb = "Utilize o ponto '.' para os centavos."
+    text_surface = button_fontav.render(textb, True, BLACK)
+    text_rect = text_surface.get_rect(center=(WINDOW_SIZE[0] // 2, 165))
+    screen.blit(text_surface, text_rect)
+
+    draw_buttonB(back_button, RED, "Sair")
     draw_button(result_button, GRAY, "Resultado")
     draw_button(clear_button, GRAY, "Limpar")
 
@@ -174,7 +182,13 @@ def draw_servicos_screen(num1, result_l, result_inss, result_iss, result_irpf, a
         result_surface = button_font.render(result_text, True, BLACK)
         result_rect = result_surface.get_rect(left=20, top=475)  # Ajuste da posição
         screen.blit(result_surface, result_rect)
-    
+
+def draw_buttonB(rect, color, text):
+    pygame.draw.rect(screen, color, rect)
+    text_surface = button_font.render(text, True, WHITE)
+    text_rectangle = text_surface.get_rect(center=rect.center)
+    screen.blit(text_surface, text_rectangle)
+
 def draw_button(rect, color, text):
     pygame.draw.rect(screen, color, rect)
     text_surface = button_font.render(text, True, BLACK)
@@ -191,7 +205,7 @@ if __name__ == '__main__':
     
     button_width, button_height = 200, 50
     service_button = pygame.Rect((WINDOW_SIZE[0] // 2 - button_width // 2, 400, button_width, button_height))
-    back_button = pygame.Rect((20, 20, 100, 50))  # Exemplo de posição e tamanho do botão de voltar
+    back_button = pygame.Rect((320, 0, 80, 40))  #Posição e tamanho do botão de voltar
     clear_button = pygame.Rect((WINDOW_SIZE[0] // 2 - button_width // 2, 300, button_width, button_height))  # Posição do botão Limpar
     
     input_box_width, input_box_height = 200, 50
