@@ -50,6 +50,7 @@ O "C.D.S - Calculadora de Serviços" é um aplicativo de calculadora criado com 
 - **Nome do Repositório**: Substitua `seu-usuario/seu-repositorio` pelo caminho correto do seu repositório no GitHub, se você estiver hospedando o código lá.
 - **Nome do Autor**: Substitua `Seu Nome` pelo seu nome real ou nome de usuário.
 - **Ícone e Nome do Executável**: Certifique-se de que `icone.ico` e `ZecaCalculinho` estão corretos e substitua conforme necessário.
+- Para fazer o Download da versão 2024 só seguir o link: https://drive.google.com/file/d/1_lXjb8tU-90x-r_BHmcovZNyFd8Cp4R4/view?usp=sharing
 
 Se precisar de mais ajustes ou tiver alguma outra questão, estou aqui para ajudar!
 
