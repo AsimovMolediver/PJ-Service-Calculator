@@ -74,7 +74,7 @@ def main():
                         try:
                             num1 = float(num1)
                             result_iss = num1 * 0.05
-                            result_inss = num1 * 0.14
+                            result_inss = num1 * 0.11
 
                             if num1 < 2259.21:
                                 result_irpf = 00.00
